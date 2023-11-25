@@ -1,0 +1,16 @@
+@use './../variables/color.scss';
+@use './../variables/spacing.scss';
+@use './../variables/border.scss';
+
+.footer {
+    padding: spacing.$space-2 spacing.$space-4;
+    height: 82px;
+    background-color: color.$base-black-100;
+
+    &__address {
+      font-size: 14px;
+      text-align: right;
+      color: color.$base-white-0;
+    }
+}
+

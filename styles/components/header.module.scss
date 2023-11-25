@@ -1,0 +1,73 @@
+@use './../variables/color.scss';
+@use './../variables/spacing.scss';
+@use './../variables/border.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: spacing.$space-2 spacing.$space-4;
+    background-color: color.$base-black-100;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    margin-right: auto;
+    padding-left: spacing.$space-5;
+    cursor: pointer;
+
+    &__header {
+      z-index: 1;
+      margin: 0 auto 0 0;
+      padding: spacing.$space-1 spacing.$space-2;
+      background: linear-gradient(90deg, color.$base-text-1 0%, color.$base-text-1 35%, color.$base-text-2 100%);
+      border-radius: border.$border-radius-6;
+    }
+
+    &__back-btn {
+      position: absolute;
+      right: 0px;
+      color: color.$base-text-2;
+      font-weight: bolder;
+      opacity: 0;
+      transition: opacity 0.3s, right 0.3s;
+    }
+
+    &:hover &__back-btn {
+      right: calc(100% - 50px);
+      opacity: initial;
+    }
+}
+
+.button {
+    margin-right: spacing.$space-4;
+    font-size: 14px;
+}
+
+.nav {
+    ul {
+      margin: 0 40px;
+      list-style-type: none;
+      display: flex;
+      width: 300px;
+      justify-content: space-around;
+    }
+
+    .nav__item {
+      a {
+        font-size: 14px;
+        color: color.$base-white-100;
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: color.$base-white-0;
+        }
+      }
+
+      &--active a {
+        text-shadow: color.$base-white-0 0 0 2px;
+      }
+    }
+}
