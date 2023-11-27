@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #222222;
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  margin-right: auto;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.logo__header {
+  z-index: 1;
+  margin: 0 auto 0 0;
+  padding: 4px 8px;
+  background: linear-gradient(90deg, #6E49FC 0%, #6E49FC 35%, #C54DF1 100%);
+  border-radius: 24px;
+}
+.logo__back-btn {
+  position: absolute;
+  right: 0px;
+  color: #C54DF1;
+  font-weight: bolder;
+  opacity: 0;
+  transition: opacity 0.3s, right 0.3s;
+}
+.logo:hover .logo__back-btn {
+  right: calc(100% - 30px);
+  opacity: initial;
+}
+
+.button {
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.nav ul {
+  margin: 0 40px;
+  list-style-type: none;
+  display: flex;
+  width: 300px;
+  justify-content: space-around;
+}
+.nav .nav__item a {
+  font-size: 14px;
+  color: #efeeee;
+}
+.nav .nav__item a:hover, .nav .nav__item a:focus, .nav .nav__item a:active {
+  color: #ffffff;
+}
+.nav .nav__item--active a {
+  text-shadow: #ffffff 0 0 2px;
+}/*# sourceMappingURL=header.module.css.map */

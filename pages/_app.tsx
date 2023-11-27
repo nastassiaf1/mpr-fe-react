@@ -1,18 +1,22 @@
-import { Inter } from 'next/font/google';
-import './../styles/globals.scss';
+import { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import store from '@/redux/store';
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
+import './../styles/globals.scss';
+import styles from '../styles/pages/index.module.scss';
 
-export default function RootLayout ({ Component, pageProps }) {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </>
+    <Provider store={store}>
+      <div className={ styles['page-container'] }>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
+    </Provider>
   )
-}
+};
+
+export default MyApp;
