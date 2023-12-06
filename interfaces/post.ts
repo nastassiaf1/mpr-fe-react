@@ -5,4 +5,5 @@ export interface Post {
   author?: string;
   createdAt?: Date;
   src?: string;
+  id?:string;
 }
