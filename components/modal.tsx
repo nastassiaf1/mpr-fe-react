@@ -8,6 +8,7 @@ export default function Modal({ showModal, modalData, handleClose }: ModalPortal
     const [data, setData] = useState(modalData);
 
     useEffect(() => {
+        console.log(showModal)
         setShow(showModal);
         setData(modalData);
       }, [showModal, modalData]);
@@ -17,7 +18,7 @@ export default function Modal({ showModal, modalData, handleClose }: ModalPortal
                 createPortal(
                     <div className={styles["modal-container"]}>
                         <div className={styles.modal}>
-                            <button onClick={handleClose}>x</button>
+                            <button className={styles["modal__close-btn"]} onClick={handleClose}>x</button>
                             <h1>{data.title}</h1>
                             {data.description && <p>{data.description}</p>}
                         </div>

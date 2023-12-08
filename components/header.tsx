@@ -1,30 +1,42 @@
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import Link from 'next/link';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@mui/material/IconButton';
 import { Button, Menu, MenuItem } from '@mui/material';
 
-import styles from './../styles/components/header.module.scss';
 import { logIn } from '@/redux/effects/auth.effects';
 import { AppState } from '@/redux/state/app.state';
+import Modal from '@/components/modal';
+import styles from './../styles/components/header.module.scss';
 
 export default function AppHeader() {
     const router = useRouter();
     const user = useSelector((state: AppState) => state.auth.user);
-    const isHomePage = router.pathname === '/';
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
+
+    const isHomePage = router.pathname === '/';
     const handleClickToHomePage = () => {
       router.push('/');
     };
 
-    const openLoginForm = async () => {
-        await dispatch(logIn({ login: 'test', password: 'test' }) as any);
+    const modalData = {
+        title: ''
+    };
+
+    const openLoginForm = () => {
+        setShowModal(true);
     };
 
     const openRegistrationForm = () => {
     };
+
+    function closeModal() {
+        setShowModal(false);
+    }
 
     return (
         <header className={ styles.header }>
@@ -83,6 +95,8 @@ export default function AppHeader() {
                     </Menu>
                 </>
             ) }
+
+            <Modal showModal={ showModal } modalData={ modalData } handleClose={ closeModal }  />
         </header>
     )
 }

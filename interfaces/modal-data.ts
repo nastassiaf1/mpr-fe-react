@@ -1,7 +1,6 @@
 export interface ModalData {
     title: string;
     description?: string;
-    handleCloseDialogue: () => void
 }
 
 export interface ModalPortalProps {
