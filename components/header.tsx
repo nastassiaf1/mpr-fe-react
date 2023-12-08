@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import Link from 'next/link';
 import Icon from '@material-ui/core/Icon';
@@ -17,6 +17,10 @@ export default function AppHeader() {
     const user = useSelector((state: AppState) => state.auth.user);
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+      });
 
     const isHomePage = router.pathname === '/';
     const handleClickToHomePage = () => {
@@ -24,7 +28,7 @@ export default function AppHeader() {
     };
 
     const modalData = {
-        title: ''
+        title: 'Log in to your account'
     };
 
     const openLoginForm = () => {
@@ -36,6 +40,19 @@ export default function AppHeader() {
 
     function closeModal() {
         setShowModal(false);
+    }
+
+    const handleLogIn = async () => {
+        await dispatch(logIn({ login: formData.username, password: formData.password }) as any);
+    }
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
+
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
     }
 
     return (
@@ -96,7 +113,26 @@ export default function AppHeader() {
                 </>
             ) }
 
-            <Modal showModal={ showModal } modalData={ modalData } handleClose={ closeModal }  />
+            <Modal showModal={ showModal } modalData={ modalData } handleClose={ closeModal }>
+                <form>
+                    <input
+                        value={formData.username}
+                        name="username"
+                        onChange={handleChange}
+                        autoFocus={true}
+                        aria-label="Enter your name"
+                        placeholder='Your name' required
+                    /><br />
+                    <input
+                        value={formData.password}
+                        name="password"
+                        onChange={handleChange}
+                        placeholder='Password'
+                        required
+                    />
+                    <Button onClick={handleLogIn}>LOGIN</Button>
+                </form>
+            </Modal>
         </header>
     )
 }

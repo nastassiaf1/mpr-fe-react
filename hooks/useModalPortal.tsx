@@ -10,7 +10,6 @@ export default function useModalPortal() {
     });
 
     const openModal = (newModalData: ModalData) => {
-        console.log('newModalData ', newModalData)
         setModalData(newModalData);
         setShowModal(true);
     };
