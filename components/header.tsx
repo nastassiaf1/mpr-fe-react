@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 import Link from 'next/link';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@mui/material/IconButton';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, Menu, MenuItem, TextField } from '@mui/material';
 
 import { logIn } from '@/redux/effects/auth.effects';
 import { AppState } from '@/redux/state/app.state';
 import Modal from '@/components/modal';
-import styles from './../styles/components/header.module.scss';
+import styles from '@/styles/components/header.module.scss';
+import modalStyle from '@/styles/components/modal.module.scss';
 
 export default function AppHeader() {
     const router = useRouter();
@@ -30,6 +31,8 @@ export default function AppHeader() {
     const modalData = {
         title: 'Log in to your account'
     };
+
+    const isFormValid = formData.username.trim() !== "" && formData.password.trim() !== "";
 
     const openLoginForm = () => {
         setShowModal(true);
@@ -114,8 +117,8 @@ export default function AppHeader() {
             ) }
 
             <Modal showModal={ showModal } modalData={ modalData } handleClose={ closeModal }>
-                <form>
-                    <input
+                <form className={modalStyle.modal__form}>
+                    <TextField
                         value={formData.username}
                         name="username"
                         onChange={handleChange}
@@ -123,14 +126,14 @@ export default function AppHeader() {
                         aria-label="Enter your name"
                         placeholder='Your name' required
                     /><br />
-                    <input
+                    <TextField
                         value={formData.password}
                         name="password"
                         onChange={handleChange}
                         placeholder='Password'
                         required
                     />
-                    <Button onClick={handleLogIn}>LOGIN</Button>
+                    <Button className={modalStyle['modal__form-btn']} onClick={handleLogIn} disabled={!isFormValid}>LOGIN</Button>
                 </form>
             </Modal>
         </header>

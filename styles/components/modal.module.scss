@@ -18,12 +18,29 @@
 .modal {
     background-color: color.$base-white-0;
     border-radius: border.$border-radius-2;
-    min-width: 320px;
+    min-width: 420px;
     height: 400px;
 
-    &__close-btn {
-        display: block;
-        margin-left: auto;
+    &__header {
+        text-align: end;
     }
 
+    &__title {
+        text-align: center;
+    }
+
+    &__description {
+        padding-left: spacing.$space-4;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin: spacing.$space-12 spacing.$space-4;
+    }
+
+    &__form-btn {
+        margin: spacing.$space-4 0;
+        height: 40px;
+    }
 }
