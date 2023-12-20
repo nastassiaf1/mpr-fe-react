@@ -16,10 +16,11 @@
 }
 
 .modal {
-    background-color: color.$base-white-0;
-    border-radius: border.$border-radius-2;
+    padding: spacing.$space-2;
     min-width: 420px;
     height: 400px;
+    background-color: color.$base-white-0;
+    border-radius: border.$border-radius-2;
 
     &__header {
         text-align: end;
