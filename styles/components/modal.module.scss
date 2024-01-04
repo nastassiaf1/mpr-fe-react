@@ -31,7 +31,8 @@
     }
 
     &__description {
-        padding-left: spacing.$space-4;
+        margin-top: spacing.$space-5;
+        text-align: center;
     }
 
     &__form {
