@@ -67,6 +67,8 @@
       }
 
       &--active a {
+        font-size: 14px;
+        color: color.$base-white-0;
         text-shadow: color.$base-white-0 0 0 2px;
       }
     }
