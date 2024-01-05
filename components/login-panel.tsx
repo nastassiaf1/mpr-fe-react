@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Modal from '@/components/modal';
 import modalStyle from '@/styles/components/modal.module.scss';
-import { logIn } from '@/redux/effects/auth.effects';
+import { logIn, register } from '@/redux/effects/auth.effects';
 
 export default function LoginPanel() {
     const [showModal, setShowModal] = useState(false);
@@ -47,7 +47,9 @@ export default function LoginPanel() {
         await dispatch(logIn({ login: formLoginData.username, password: formLoginData.password }) as any);
     }
 
-    const handleRegister = async () => {};
+    const handleRegister = async () => {
+        await dispatch(register({ login: formRegisterData.username, email: formRegisterData.email, password: formRegisterData.password }) as any);
+    };
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
